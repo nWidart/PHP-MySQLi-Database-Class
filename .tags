@@ -1,0 +1,76 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+MysqliDB	MysqliDb.php	/^class MysqliDB {$/;"	c
+__construct	MysqliDb.php	/^	public function __construct($host, $username, $password, $db) {$/;"	f
+__destruct	MysqliDb.php	/^	public function __destruct() $/;"	f
+_bindParams	MysqliDb.php	/^		$this->_bindParams = array('');		\/\/ Create the empty 0 index$/;"	v
+_bindParams	MysqliDb.php	/^	protected $_bindParams = array('');		\/\/ Create the empty 0 index$/;"	v
+_buildQuery	MysqliDb.php	/^	protected function _buildQuery($numRows = NULL, $tableData = NULL) $/;"	f
+_determineType	MysqliDb.php	/^	protected function _determineType($item) $/;"	f
+_dynamicBindResults	MysqliDb.php	/^	protected function _dynamicBindResults($stmt) $/;"	f
+_instance	MysqliDb.php	/^	protected static $_instance;$/;"	v
+_mysqli	MysqliDb.php	/^		$this->_mysqli = new mysqli($host, $username, $password, $db)$/;"	v
+_mysqli	MysqliDb.php	/^	protected $_mysqli;$/;"	v
+_paramTypeList	MysqliDb.php	/^	protected $_paramTypeList;$/;"	v
+_prepareQuery	MysqliDb.php	/^	protected function _prepareQuery() $/;"	f
+_query	MysqliDb.php	/^		$this->_query = "DELETE FROM $tableName";$/;"	v
+_query	MysqliDb.php	/^		$this->_query = "INSERT into $tableName";$/;"	v
+_query	MysqliDb.php	/^		$this->_query = "SELECT * FROM $tableName";$/;"	v
+_query	MysqliDb.php	/^		$this->_query = "UPDATE $tableName SET ";$/;"	v
+_query	MysqliDb.php	/^		$this->_query = filter_var($query, FILTER_SANITIZE_STRING);$/;"	v
+_query	MysqliDb.php	/^	protected $_query;$/;"	v
+_where	MysqliDb.php	/^		$this->_where = array();$/;"	v
+_where	MysqliDb.php	/^	protected $_where = array();$/;"	v
+_whereTypeList	MysqliDb.php	/^	protected $_whereTypeList;$/;"	v
+bindParams	MysqliDb.php	/^	public function rawQuery($query, $bindParams = NULL)$/;"	v
+column	MysqliDb.php	/^			foreach ($this->_where as $column => $value) {$/;"	v
+db	MysqliDb.php	/^	 * @uses $db = MySqliDb::getInstance();$/;"	v
+db	index.php	/^$db = new MysqliDb('localhost', 'root', 'root', 'db');$/;"	v
+delete	MysqliDb.php	/^	public function delete($tableName, $numRows = NULL) {$/;"	f
+get	MysqliDb.php	/^	public function get($tableName, $numRows = NULL) $/;"	f
+getInstance	MysqliDb.php	/^	public static function getInstance()$/;"	f
+hasConditional	MysqliDb.php	/^		(!empty($this->_where )) ? $hasConditional = true : $hasConditional = false;$/;"	v
+hasTableData	MysqliDb.php	/^		(gettype($tableData) === 'array') ? $hasTableData = true : $hasTableData = false;	$/;"	v
+i	MysqliDb.php	/^				$i = 1;$/;"	v
+i	MysqliDb.php	/^			$i = 1;$/;"	v
+insert	MysqliDb.php	/^	public function insert($tableName, $insertData) $/;"	f
+insertData	index.php	/^$insertData = array($/;"	v
+key	MysqliDb.php	/^				foreach ($values as $key => $val) {$/;"	v
+key	MysqliDb.php	/^			foreach ($row as $key => $val) {$/;"	v
+keys	MysqliDb.php	/^				$keys = array_keys($tableData);$/;"	v
+meta	MysqliDb.php	/^		$meta = $stmt->result_metadata();$/;"	v
+num	MysqliDb.php	/^				$num = count($keys);$/;"	v
+numRows	MysqliDb.php	/^	public function delete($tableName, $numRows = NULL) {$/;"	v
+numRows	MysqliDb.php	/^	public function get($tableName, $numRows = NULL) $/;"	v
+numRows	MysqliDb.php	/^	public function query($query, $numRows = NULL)$/;"	v
+parameters	MysqliDb.php	/^		$parameters = array();$/;"	v
+params	MysqliDb.php	/^			$params = array('');		\/\/ Create the empty 0 index$/;"	v
+pos	MysqliDb.php	/^				$pos = strpos($this->_query, 'UPDATE');$/;"	v
+pos	MysqliDb.php	/^			$pos = strpos($this->_query, 'INSERT');$/;"	v
+prop	MysqliDb.php	/^					foreach ($tableData as $prop => $value) {$/;"	v
+prop	MysqliDb.php	/^				foreach ($this->_where as $prop => $val) {$/;"	v
+prop	MysqliDb.php	/^			foreach ($bindParams as $prop => $val) {$/;"	v
+prop	MysqliDb.php	/^			foreach ($tableData as $prop => $val) {$/;"	v
+query	MysqliDb.php	/^	public function query($query, $numRows = NULL)$/;"	f
+rawQuery	MysqliDb.php	/^	public function rawQuery($query, $bindParams = NULL)$/;"	f
+reset	MysqliDb.php	/^	protected function reset()$/;"	f
+result	MysqliDb.php	/^		($stmt->affected_rows) ? $result = $stmt->insert_id : $result = false;$/;"	v
+result	MysqliDb.php	/^		($stmt->affected_rows) ? $result = true : $result = false;$/;"	v
+results	MysqliDb.php	/^		$results = $this->_dynamicBindResults($stmt);$/;"	v
+results	MysqliDb.php	/^		$results = array();$/;"	v
+results	index.php	/^$results = $db->insert('posts', $insertData);$/;"	v
+stmt	MysqliDb.php	/^		$stmt = $this->_buildQuery($numRows);$/;"	v
+stmt	MysqliDb.php	/^		$stmt = $this->_buildQuery(NULL, $insertData);$/;"	v
+stmt	MysqliDb.php	/^		$stmt = $this->_buildQuery(NULL, $tableData);$/;"	v
+stmt	MysqliDb.php	/^		$stmt = $this->_prepareQuery();$/;"	v
+tableData	MysqliDb.php	/^	protected function _buildQuery($numRows = NULL, $tableData = NULL) $/;"	v
+takes	MysqliDb.php	/^	 * This function takes the input, determines what type it is,$/;"	f
+update	MysqliDb.php	/^	public function update($tableName, $tableData) $/;"	f
+values	MysqliDb.php	/^				$values = array_values($tableData);$/;"	v
+where	MysqliDb.php	/^	public function where($whereProp, $whereValue) $/;"	f
+would	MysqliDb.php	/^	 * Inheriting this class would require reloading connection info.$/;"	c
+x	MysqliDb.php	/^			$x = array();$/;"	v

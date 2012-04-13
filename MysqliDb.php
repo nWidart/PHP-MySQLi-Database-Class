@@ -56,13 +56,13 @@ class MysqliDB {
 	protected $_bindParams = array('');		// Create the empty 0 index
 
 	public function __construct($host, $username, $password, $db) {
-		$this->_mysqli = new mysqli($host, $username, $password, $db) 
+		$this->_mysqli = new mysqli($host, $username, $password, $db)
 			or die('There was a problem connecting to the database');
 		self::$_instance = $this;
 	}
 
 	/**
-	 * A method of returning the static instance to allow access to the 
+	 * A method of returning the static instance to allow access to the
 	 * instantiated object from within another class.
 	 * Inheriting this class would require reloading connection info.
 	 *
@@ -88,7 +88,7 @@ class MysqliDB {
 		unset($this->_whereTypeList);
 		unset($this->_paramTypeList);
 	}
-	
+
 	/**
 	 * Pass in a raw query and an array containing the parameters to bind to the prepaird statement.
 	 *
@@ -96,21 +96,21 @@ class MysqliDB {
 	 * @param array $bindData All variables to bind to the SQL statment.
 	 * @return array Contains the returned rows from the query.
 	 */
-	public function rawQuery($query, $bindParams = NULL) 
+	public function rawQuery($query, $bindParams = NULL)
 	{
 		$this->_query = filter_var($query, FILTER_SANITIZE_STRING);
 		$stmt = $this->_prepareQuery();
-		
+
 		if (gettype($bindParams) === 'array') {
 			$params = array('');		// Create the empty 0 index
 			foreach ($bindParams as $prop => $val) {
 				$params[0] .= $this->_determineType($val);
 				array_push($params, &$bindParams[$prop]);
 			}
-			
+
 			call_user_func_array(array($stmt, 'bind_param'), $params);
 		}
-		
+
 		$stmt->execute();
 		$this->reset();
 
@@ -119,12 +119,12 @@ class MysqliDB {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param string $query Contains a user-provided select query.
 	 * @param int $numRows The number of rows total to return.
 	 * @return array Contains the returned rows from the query.
 	 */
-	public function query($query, $numRows = NULL) 
+	public function query($query, $numRows = NULL)
 	{
 		$this->_query = filter_var($query, FILTER_SANITIZE_STRING);
 		$stmt = $this->_buildQuery($numRows);
@@ -142,7 +142,7 @@ class MysqliDB {
 	 * @param integer $numRows The number of rows total to return.
 	 * @return array Contains the returned rows from the select query.
 	 */
-	public function get($tableName, $numRows = NULL) 
+	public function get($tableName, $numRows = NULL)
 	{
 
 		$this->_query = "SELECT * FROM $tableName";
@@ -156,11 +156,11 @@ class MysqliDB {
 
 	/**
 	 *
-	 * @param <string $tableName The name of the table.
+	 * @param string $tableName The name of the table.
 	 * @param array $insertData Data containing information for inserting into the DB.
 	 * @return boolean Boolean indicating whether the insert query was completed succesfully.
 	 */
-	public function insert($tableName, $insertData) 
+	public function insert($tableName, $insertData)
 	{
 		$this->_query = "INSERT into $tableName";
 		$stmt = $this->_buildQuery(NULL, $insertData);
@@ -178,7 +178,7 @@ class MysqliDB {
 	 * @param array $tableData Array of data to update the desired row.
 	 * @return boolean
 	 */
-	public function update($tableName, $tableData) 
+	public function update($tableName, $tableData)
 	{
 		$this->_query = "UPDATE $tableName SET ";
 
@@ -216,7 +216,7 @@ class MysqliDB {
 	 * @param string $whereProp The name of the database field.
 	 * @param mixed $whereValue The value of the database field.
 	 */
-	public function where($whereProp, $whereValue) 
+	public function where($whereProp, $whereValue)
 	{
 		$this->_where[$whereProp] = $whereValue;
 		return $this;
@@ -231,7 +231,7 @@ class MysqliDB {
 	 * @param mixed $item Input to determine the type.
 	 * @return string The joined parameter types.
 	 */
-	protected function _determineType($item) 
+	protected function _determineType($item)
 	{
 		switch (gettype($item)) {
 			case 'NULL':
@@ -262,9 +262,9 @@ class MysqliDB {
 	 * @param array $tableData Should contain an array of data for updating the database.
 	 * @return object Returns the $stmt object.
 	 */
-	protected function _buildQuery($numRows = NULL, $tableData = NULL) 
+	protected function _buildQuery($numRows = NULL, $tableData = NULL)
 	{
-		(gettype($tableData) === 'array') ? $hasTableData = true : $hasTableData = false;	
+		(gettype($tableData) === 'array') ? $hasTableData = true : $hasTableData = false;
 		(!empty($this->_where )) ? $hasConditional = true : $hasConditional = false;
 
 		// Did the user call the "where" method?
@@ -279,7 +279,7 @@ class MysqliDB {
 						// determines what data type the item is, for binding purposes.
 						$this->_paramTypeList .= $this->_determineType($value);
 
-						// prepares the reset of the SQL query.
+						// prepares the rest of the SQL query.
 						($i === count($tableData)) ?
 							$this->_query .= $prop . ' = ?':
 							$this->_query .= $prop . ' = ?, ';
@@ -288,22 +288,22 @@ class MysqliDB {
 					}
 				}
 			}
-			
+
 			//Prepair the where portion of the query
-			$this->_query .= ' WHERE ';	
+			$this->_query .= ' WHERE ';
 			$i = 1;
 			foreach ($this->_where as $column => $value) {
 				// Determines what data type the where column is, for binding purposes.
 				$this->_whereTypeList .= $this->_determineType($value);
 
-				// Prepares the reset of the SQL query.
+				// Prepares the rest of the SQL query.
 				($i === count($this->_where)) ?
 					$this->_query .= $column . ' = ?':
 					$this->_query .= $column . ' = ? AND ';
 
 				$i++;
 			}
-			
+
 		}
 
 		// Determine if is INSERT query
